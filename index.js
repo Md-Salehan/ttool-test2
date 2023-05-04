@@ -9,6 +9,7 @@ const toolRoute = require("./routes/tools");
 const submissionRoute = require("./routes/submission");
 const categoryRoute = require("./routes/category");
 const check = require("./routes/check");
+const tutorialRoute = require("./routes/tutorial")
 const app = express();
 
 dotenv.config();
@@ -26,6 +27,16 @@ app.get("/",check)
 app.use("/api/tool", toolRoute);
 app.use("/api/submission", submissionRoute);
 app.use("/api/category", categoryRoute);
+app.use("/api/tutorial", tutorialRoute);
+app.post("/test",(req, res)=>{
+    try{
+        const body = req.body
+        console.log(body);
+        res.status(200).json(body);
+    }catch(err){
+        console.log(err);
+    }
+});
 
 app.listen( process.env.PORT||8800, ()=>{
     console.log("Backend server is running");
