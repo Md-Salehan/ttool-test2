@@ -10,6 +10,7 @@ const submissionRoute = require("./routes/submission");
 const categoryRoute = require("./routes/category");
 const check = require("./routes/check");
 const tutorialRoute = require("./routes/tutorial")
+const glossaryRoute = require("./routes/Glossary")
 const app = express();
 
 dotenv.config();
@@ -28,6 +29,8 @@ app.use("/api/tool", toolRoute);
 app.use("/api/submission", submissionRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/tutorial", tutorialRoute);
+app.use("/api/glossary", glossaryRoute);
+
 app.post("/test",(req, res)=>{
     try{
         const body = req.body
