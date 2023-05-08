@@ -24,25 +24,11 @@ router.get("/alltool", async (req, res)=>{
    }
 }); 
 
-let savetool = async(x)=> await x.save();
-router.get("/addalltool", async (req, res)=>{
+// A Tool
+router.get("/:id", async (req, res)=>{
    try{
-      resultsArr.map((item,i)=> {
-         let x = new Tool({
-            toolName: item.name,
-           toolURL: item.siteURL,
-           toolDesc: item.description,
-           toolVideoURL: "",
-           priceModle: "Free",
-           tagList: item.tags,
-           toolExtraDesc: "",
-           toolImageURL: item.imageURL
-         })
-         console.log(i);
-         savetool(x)
-      res.status(200).json("ok");
-   })
-
+      const tool = await Tool.findById(req.params.id);
+      res.status(200).json(tool);
    }catch(err) {
       console.log(err);
    }
@@ -60,27 +46,21 @@ router.delete("/delete/:id", async (req, res) => {
    }
  });
 
- //TOOL RESULT
-//  router.get("/result", async (req, res)=>{
-//    try{
-//       const tool = await Tool.find({tagList: {$eleMatch: {$in: ["Chat","Finance"]}}});
-//       res.status(200).json(tool);
-//    }catch(err) {
-//       console.log(err);
-//    }
-// }); 
 
  //TOOL LIKE
-router.get("/:id/like", async (req, res) => {
+router.put("/:id/like", async (req, res) => {
    try {
-      let likeNum=9;
-      const tool = await Tool.findById(req.params.id);
-      likeNum = tool.like+1 
-      await tool.updateOne({ $push: { likes: 7} });
-      res.status(200).json({l:tool.like});
+     const tool = await Tool.findById(req.params.id);
+     if (!tool.like.includes(req.body.userId)) {
+      await tool.updateOne({ $push: { like: req.body.userId } });
+       res.status(200).json("The tool has been liked");
+     } else {
+      await tool.updateOne({ $pull: { like: req.body.userId } });
+      res.status(200).json("The tool has been disliked");
+     }
    } catch (err) {
      res.status(500).json(err);
    }
- });
+});
 
 module.exports = router;

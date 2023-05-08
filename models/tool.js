@@ -34,8 +34,8 @@ const ToolSchema = new mongoose.Schema({
         default: ""
     },
     like: {
-        type: Number,
-        default: 0
+        type: Array,
+        default: []
     }
 },  { timestamps: true })
 

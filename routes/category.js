@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Category = require("../models/category")
 
-//All SUBISSION
+//All category
 router.get("/allcategory", async (req, res) => {
     try {
       const category = await Category.find();
@@ -11,7 +11,7 @@ router.get("/allcategory", async (req, res) => {
     }
   });
 
-  //Submit TOOL
+  //Add category
 router.post("/add", async (req, res)=>{
   const newCategory = new Category(req.body);
   

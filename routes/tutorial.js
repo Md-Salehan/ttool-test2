@@ -30,7 +30,6 @@ router.post("/addtutorial", async (req, res)=>{
 
 //GET ALL TUTORIAL
 router.get("/alltutorial", async (req, res)=>{
-   
    try{
       const tutorials = await Tutorial.find();
       res.status(200).json(tutorials);
@@ -44,7 +43,7 @@ router.delete("/delete/:id", async (req, res) => {
    try {
       const tutorial = await Tutorial.findById(req.params.id);
       await tutorial.deleteOne();
-      res.status(200).json("the tool has been deleted");
+      res.status(200).json("the tutorial has been deleted");
    } catch (err) {
      res.status(500).json(err);
    }

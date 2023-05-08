@@ -11,6 +11,8 @@ const categoryRoute = require("./routes/category");
 const check = require("./routes/check");
 const tutorialRoute = require("./routes/tutorial")
 const glossaryRoute = require("./routes/Glossary")
+const userAuthRoute = require("./routes/auth")
+const userRoute = require("./routes/user")
 const app = express();
 
 dotenv.config();
@@ -30,6 +32,8 @@ app.use("/api/submission", submissionRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/tutorial", tutorialRoute);
 app.use("/api/glossary", glossaryRoute);
+app.use("/api/auth", userAuthRoute);
+app.use("/api/user", userRoute);
 
 app.post("/test",(req, res)=>{
     try{

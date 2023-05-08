@@ -23,6 +23,16 @@ router.post("/add", async (req, res)=>{
        console.log(err);
     }
  });
+
+ router.delete("/delete/:id", async (req, res) => {
+    try {
+       const glossary = await Glossary.findById(req.params.id);
+       await glossary.deleteOne();
+       res.status(200).json("the Glossary has been deleted");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
  
 
 
