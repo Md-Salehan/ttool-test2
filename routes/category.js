@@ -33,4 +33,18 @@ router.post("/add", async (req, res)=>{
       res.status(500).json(err);
     }
   });
+
+  //UPDATE
+  router.put("/:id/update", async (req, res) => {
+    try {
+      const result = await Category.findByIdAndUpdate(req.params.id, {
+        $set: req.body,
+      });
+      res.status(200).json(result);
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  }
+  );
+ 
 module.exports = router;

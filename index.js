@@ -12,7 +12,9 @@ const check = require("./routes/check");
 const tutorialRoute = require("./routes/tutorial")
 const glossaryRoute = require("./routes/Glossary")
 const userAuthRoute = require("./routes/auth")
-const userRoute = require("./routes/user")
+const userRoute = require("./routes/user");
+const bannerRoute = require("./routes/banner")
+const adminRoute = require("./routes/admin")
 const app = express();
 
 dotenv.config();
@@ -34,6 +36,8 @@ app.use("/api/tutorial", tutorialRoute);
 app.use("/api/glossary", glossaryRoute);
 app.use("/api/auth", userAuthRoute);
 app.use("/api/user", userRoute);
+app.use("/api/banner", bannerRoute);
+app.use("/api/admin", adminRoute);
 
 app.post("/test",(req, res)=>{
     try{

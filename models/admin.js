@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const UserSchema = new mongoose.Schema({
+const AdminSchema = new mongoose.Schema({
     fname: {
         type: String,
         default: ""
@@ -13,14 +13,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    mainAdmin:{
-        type: Boolean,
-        default: false
-    },
     email: {
         type: String,
         required: true,
@@ -31,18 +23,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    saveProduct:{
-        type: Array,
-        default: []
-    },
-    likedProduct:{
-        type: Array,
-        default: []
-    },
     type:{
         type: String,
         default: ""
     }
 },  { timestamps: true })
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("Admins", AdminSchema);
